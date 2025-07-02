@@ -7,7 +7,6 @@
   <!-- Google Fonts for a nostalgic, cursive touch -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
   <style>
-    /* Full-screen background with a warm gradient */
     html, body {
       margin: 0;
       padding: 0;
@@ -20,7 +19,6 @@
       align-items: center;
       text-align: center;
     }
-    /* Container for the content with a soft, semi-transparent card */
     .container {
       background: rgba(255, 255, 255, 0.85);
       padding: 40px;
@@ -28,18 +26,29 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
       max-width: 90%;
     }
-    /* Main heading in a flowing, romantic script */
     h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 4em;
       margin-bottom: 0.2em;
       color: #B03060;
     }
-    /* Countdown number styling */
     .countdown {
       font-size: 3em;
       margin: 20px 0;
       color: #800000;
+    }
+    /* Gallery styling */
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .gallery img {
+      max-width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     p {
       font-size: 1.2em;
@@ -50,27 +59,27 @@
       color: #555;
       margin-top: 20px;
     }
-    .heart {
-      color: #E75480;
-      font-size: 1.2em;
-      margin: 0 5px;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Counting the Days Until We Unite</h1>
     <p class="countdown" id="countdown">-- days</p>
-    <p><span class="heart">❤️</span> Every moment brings us closer <span class="heart">❤️</span></p>
+
+    <!-- Replace the following <img> tags with your photo filenames -->
+    <div class="gallery">
+      <img src="photo1.jpg" alt="Memory 1">
+      <img src="photo2.jpg" alt="Memory 2">
+      <img src="photo3.jpg" alt="Memory 3">
+    </div>
+
     <p class="footer">August 15 Reunion</p>
   </div>
   <script>
     function updateCountdown() {
       const now = new Date();
       let year = now.getFullYear();
-      // August is month 7 (0-indexed months)
       let target = new Date(year, 7, 15);
-      // If today's past August 15, count to next year
       if (now > target) {
         target.setFullYear(year + 1);
       }
@@ -79,7 +88,6 @@
       document.getElementById('countdown').textContent = days + (days === 1 ? ' day' : ' days');
     }
     updateCountdown();
-    // Update every hour in case the page stays open
     setInterval(updateCountdown, 1000 * 60 * 60);
   </script>
 </body>
