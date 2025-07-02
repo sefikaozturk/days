@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counting Down to Our Reunion</title>
+  <!-- Google Fonts for a nostalgic, cursive touch -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    /* Full-screen background with a warm gradient */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: linear-gradient(to bottom, #FFEFD5, #FFF5EE);
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    /* Container for the content with a soft, semi-transparent card */
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 90%;
+    }
+    /* Main heading in a flowing, romantic script */
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4em;
+      margin-bottom: 0.2em;
+      color: #B03060;
+    }
+    /* Countdown number styling */
+    .countdown {
+      font-size: 3em;
+      margin: 20px 0;
+      color: #800000;
+    }
+    p {
+      font-size: 1.2em;
+      margin: 0.5em 0;
+    }
+    .footer {
+      font-size: 0.9em;
+      color: #555;
+      margin-top: 20px;
+    }
+    .heart {
+      color: #E75480;
+      font-size: 1.2em;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Counting the Days Until We Unite</h1>
+    <p class="countdown" id="countdown">-- days</p>
+    <p><span class="heart">❤️</span> Every moment brings us closer <span class="heart">❤️</span></p>
+    <p class="footer">August 15 Reunion</p>
+  </div>
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      let year = now.getFullYear();
+      // August is month 7 (0-indexed months)
+      let target = new Date(year, 7, 15);
+      // If today's past August 15, count to next year
+      if (now > target) {
+        target.setFullYear(year + 1);
+      }
+      const diff = target - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('countdown').textContent = days + (days === 1 ? ' day' : ' days');
+    }
+    updateCountdown();
+    // Update every hour in case the page stays open
+    setInterval(updateCountdown, 1000 * 60 * 60);
+  </script>
+</body>
+</html>
