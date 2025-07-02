@@ -7,6 +7,7 @@
   <!-- Google Fonts for a nostalgic, cursive touch -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
   <style>
+    /* Base styles */
     html, body {
       margin: 0;
       padding: 0;
@@ -24,18 +25,22 @@
       padding: 40px;
       border-radius: 15px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      max-width: 90%;
+      width: 100%;
+      max-width: 500px;
+      box-sizing: border-box;
     }
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 4em;
+      font-size: 3em;
       margin-bottom: 0.2em;
       color: #B03060;
+      line-height: 1.1;
     }
     .countdown {
-      font-size: 3em;
+      font-size: 2.5em;
       margin: 20px 0;
       color: #800000;
+      line-height: 1.2;
     }
     /* Gallery styling */
     .gallery {
@@ -46,12 +51,14 @@
       margin: 20px 0;
     }
     .gallery img {
+      width: calc(33% - 20px);
       max-width: 200px;
+      height: auto;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     p {
-      font-size: 1.2em;
+      font-size: 1.1em;
       margin: 0.5em 0;
     }
     .footer {
@@ -59,16 +66,21 @@
       color: #555;
       margin-top: 20px;
     }
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      .container { padding: 20px; }
+      h1 { font-size: 2em; }
+      .countdown { font-size: 2em; }
+      .gallery { gap: 10px; }
+      .gallery img { width: 45%; max-width: none; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Counting the Days Until We Unite</h1>
-    <!-- Fixed the countdown class typo -->
     <p class="countdown" id="countdown">-- days</p>
 
-    <!-- Photo gallery: ensure these files are in the same folder as this HTML
-         or update the src paths (e.g., "./images/photo1.jpg") to match your structure -->
     <div class="gallery">
       <img src="./photo1.jpeg" alt="Memory 1">
       <img src="./photo2.jpeg" alt="Memory 2">
@@ -82,7 +94,9 @@
       const now = new Date();
       let year = now.getFullYear();
       let target = new Date(year, 7, 15);
-      if (now > target) target.setFullYear(year + 1);
+      if (now > target) {
+        target.setFullYear(year + 1);
+      }
       const diff = target - now;
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const label = days + (days === 1 ? ' day' : ' days');
