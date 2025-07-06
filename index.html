@@ -110,16 +110,16 @@
       <img src="./photo3.jpeg" alt="Memory 3" />
     </div>
 
-    <p class="footer">August 25 Reunion at 12:00 PM</p>
+    <p class="footer">August 15 Reunion at 12:00 PM</p>
   </div>
   <script>
     function updateCountdown() {
       const now = new Date();
       const year = now.getFullYear();
-      // Set target to August 25 at 12:00
-      let target = new Date(year, 7, 25, 12, 0, 0);
+      // Set target to August 15 at 12:00
+      let target = new Date(year, 7, 15, 12, 0, 0);
       if (now > target) {
-        target = new Date(year + 1, 7, 25, 12, 0, 0);
+        target = new Date(year + 1, 7, 15, 12, 0, 0);
       }
       const diff = target - now;
 
