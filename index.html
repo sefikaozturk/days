@@ -37,9 +37,10 @@
       color: #b03060;
       line-height: 1.1;
     }
-    .countdown {
-      font-size: 3em;
-      margin: 20px 0;
+    .countdown-day,
+    .countdown-total {
+      font-size: 2.5em;
+      margin: 10px 0;
       color: #800000;
       line-height: 1.2;
     }
@@ -75,8 +76,9 @@
       h1 {
         font-size: 2em;
       }
-      .countdown {
-        font-size: 2em;
+      .countdown-day,
+      .countdown-total {
+        font-size: 1.5em;
       }
       .gallery {
         gap: 10px;
@@ -97,7 +99,10 @@
 <body>
   <div class="container">
     <h1>Counting the Time Until We Unite</h1>
-    <p class="countdown" id="countdown">-- days --:--:--</p>
+    <!-- Days left -->
+    <p class="countdown-day" id="countdown-day">-- days</p>
+    <!-- Total minutes and seconds left -->
+    <p class="countdown-total" id="countdown-total">-- minutes -- seconds</p>
 
     <div class="gallery">
       <img src="./photo1.jpeg" alt="Memory 1" />
@@ -116,23 +121,23 @@
         target = new Date(year + 1, 7, 15, 0, 0, 0);
       }
       const diff = target - now;
+
+      // Days
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
       const dLabel = days + (days === 1 ? ' day' : ' days');
-      // Pad hours, minutes, seconds
-      const hLabel = String(hours).padStart(2, '0');
-      const mLabel = String(minutes).padStart(2, '0');
-      const sLabel = String(seconds).padStart(2, '0');
-
       document.getElementById(
-        'countdown'
-      ).textContent = `❤️ ${dLabel} ${hLabel}:${mLabel}:${sLabel} ❤️`;
+        'countdown-day'
+      ).textContent = `❤️ ${dLabel} ❤️`;
+
+      // Total minutes and seconds
+      const totalSeconds = Math.floor(diff / 1000);
+      const totalMinutes = Math.floor(totalSeconds / 60);
+      const remainingSeconds = totalSeconds % 60;
+      document.getElementById(
+        'countdown-total'
+      ).textContent = `❤️ ${totalMinutes} minutes ${remainingSeconds} seconds ❤️`;
     }
     updateCountdown();
-    // Update every second for live timer
     setInterval(updateCountdown, 1000);
   </script>
 </body>
